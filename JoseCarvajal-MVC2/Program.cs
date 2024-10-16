@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using JoseCarvajal_MVC2.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<JoseCarvajal_MVC2Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JoseCarvajal_MVC2Context") ?? throw new InvalidOperationException("Connection string 'JoseCarvajal_MVC2Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
